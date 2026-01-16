@@ -1,4 +1,3 @@
-```markdown
 # EcoPulse – Home Energy Dashboard
 
 A full-stack web application that helps households understand and optimize their electricity usage.
