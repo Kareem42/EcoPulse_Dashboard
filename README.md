@@ -378,7 +378,3 @@ This project is designed to practice and demonstrate:
 
 This project is open-source under the MIT License.
 Feel free to use it as a reference or starting point for your own portfolio.
-
-```
-
-You can paste this directly into a `README.md` file in your GitHub repo and then tweak project names/paths (like `backend`, `frontend`, or `energy-dashboard`) to match your actual folder structure.
