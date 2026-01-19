@@ -3,7 +3,7 @@ spring:
     name: energy-dashboard
 
   datasource:
-    url: jdbc:h2:mem:ecopulse
+    url: jdbc:h2:mem:eco pulse
     driver-class-name: org.h2.Driver
     username: sa
     password:

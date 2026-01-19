@@ -15,6 +15,8 @@ import java.net.URI;
 @RequestMapping("/api/users/{userId}/devices")
 @RequiredArgsConstructor
 @CrossOrigin
+
+// Exposing two REST endpoints for managing devices belonging to a user.
 public class DeviceController {
 
     private final DeviceService deviceService;
