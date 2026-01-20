@@ -1,5 +1,6 @@
 package com.example.ecopulse.controller;
 
+import com.example.ecopulse.dto.LoginRequest;
 import com.example.ecopulse.dto.UserResponse;
 import com.example.ecopulse.dto.UserSignupRequest;
 import com.example.ecopulse.service.UserService;
@@ -32,6 +33,15 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getUser(@PathVariable Long id) {
         UserResponse user = userService.getUser(id);
+        return ResponseEntity.ok(user);
+    }
+
+    // POST /api/users/login
+    @PostMapping
+    public ResponseEntity<UserResponse> login(
+            @Valid @RequestBody LoginRequest loginRequest
+    ) {
+        UserResponse user = userService.login(loginRequest);
         return ResponseEntity.ok(user);
     }
 }
