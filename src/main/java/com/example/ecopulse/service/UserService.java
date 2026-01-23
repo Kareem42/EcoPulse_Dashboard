@@ -1,5 +1,6 @@
 package com.example.ecopulse.service;
 
+import com.example.ecopulse.dto.AuthResponse;
 import com.example.ecopulse.dto.LoginRequest;
 import com.example.ecopulse.dto.UserResponse;
 import com.example.ecopulse.dto.UserSignupRequest;
@@ -16,6 +17,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     @Transactional
     public UserResponse signup(UserSignupRequest request) {
@@ -52,18 +54,24 @@ public class UserService {
                 .build();
     }
 
-    public UserResponse login(LoginRequest loginRequest) {
+    public AuthResponse login (LoginRequest loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail())
                 .orElseThrow(() -> new RuntimeException("Invalid email or password"));
 
         if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPasswordHash())){
             throw new RuntimeException("Invalid email or password");
         }
-        return UserResponse.builder()
+        String token = jwtService.generateToken(user.getEmail());
+        UserResponse userResponse = UserResponse.builder()
                 .id(user.getId())
                 .email(user.getEmail())
                 .name(user.getName())
                 .homeLocation(user.getHomeLocation())
+                .build();
+
+        return AuthResponse.builder()
+                .token(token)
+                .user(userResponse)
                 .build();
     }
 }
