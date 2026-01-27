@@ -4,7 +4,6 @@ import com.example.ecopulse.dto.LoginRequest;
 import com.example.ecopulse.dto.UserResponse;
 import com.example.ecopulse.dto.UserSignupRequest;
 import com.example.ecopulse.service.UserService;
-import com.example.ecopulse.dto.WeatherResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +41,7 @@ public class UserController {
     public ResponseEntity<UserResponse> login(
             @Valid @RequestBody LoginRequest loginRequest
     ) {
-        UserResponse user = userService.login(loginRequest).getUser();
+        UserResponse user = userService.login(loginRequest);
         return ResponseEntity.ok(user);
     }
 }
