@@ -63,18 +63,18 @@ public class WeatherService {
     }
 
     /**
-     * Fetch weather from OpenWeatherMap API
+     * Fetch aka Response weather from OpenWeatherMap API
      */
     private CurrentWeatherDto fetchFromApi(String city) {
         try{
-            String url = String.format("%s?q=%s&appid=%s&units=metric", apiUrl, city, apiKey);
+            String url = String.format("%s?q=%s&appid=%s&units=imperial", apiUrl, city, apiKey);
             WeatherResponse response = restTemplate.getForObject(url, WeatherResponse.class);
 
             if (response == null || response.getMain() == null) {
                 throw new RuntimeException("Invalid response from weather API");
             }
             return CurrentWeatherDto.builder()
-                    .city(response.getCityName())
+                    .city(response.getName())
                     .temperature(response.getMain().getTemp())
                     .humidity(response.getMain().getHumidity())
                     .pressure(response.getMain().getPressure())
