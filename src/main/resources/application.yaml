@@ -26,6 +26,6 @@ server:
 
 weather:
   api:
-    key: e0caec71f54bfd0816bf9734cdbbf430
+    key:
     url: https://api.openweathermap.org/data/2.5/weather
     cache-duration-minutes: 30
